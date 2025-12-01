@@ -15,7 +15,7 @@ and omits many desirable features.
 import random
 
 # Third-party libraries
->>>>>>> 74a29f9a6be247026a2e019029efb28bea42b53e
+
 import numpy as np
 
 class Network(object):
@@ -32,7 +32,7 @@ class Network(object):
         layer is assumed to be an input layer, and by convention we
         won't set any biases for those neurons, since biases are only
         ever used in computing the outputs from later layers."""
->>>>>>> 74a29f9a6be247026a2e019029efb28bea42b53e
+        
         self.num_layers = len(sizes)
         self.sizes = sizes
         self.biases = [np.random.randn(y, 1) for y in sizes[1:]]
@@ -42,7 +42,7 @@ class Network(object):
     def feedforward(self, a):
 
         """Return the output of the network if ``a`` is input."""
->>>>>>> 74a29f9a6be247026a2e019029efb28bea42b53e
+
         for b, w in zip(self.biases, self.weights):
             a = sigmoid(np.dot(w, a)+b)
         return a
@@ -58,7 +58,7 @@ class Network(object):
         network will be evaluated against the test data after each
         epoch, and partial progress printed out.  This is useful for
         tracking progress, but slows things down substantially."""
->>>>>>> 74a29f9a6be247026a2e019029efb28bea42b53e
+
         if test_data:
             test_data = list(test_data)
             n_test = len(test_data)
@@ -66,7 +66,7 @@ class Network(object):
 
         training_data = list(training_data)
         n = len(training_data)
->>>>>>> 74a29f9a6be247026a2e019029efb28bea42b53e
+
         for j in range(epochs):
             random.shuffle(training_data)
             mini_batches = [
@@ -86,7 +86,7 @@ class Network(object):
         gradient descent using backpropagation to a single mini batch.
         The ``mini_batch`` is a list of tuples ``(x, y)``, and ``eta``
         is the learning rate."""
->>>>>>> 74a29f9a6be247026a2e019029efb28bea42b53e
+
         nabla_b = [np.zeros(b.shape) for b in self.biases]
         nabla_w = [np.zeros(w.shape) for w in self.weights]
         for x, y in mini_batch:
@@ -110,7 +110,7 @@ class Network(object):
         activation = x
         activations = [x] # list to store all the activations, layer by layer
         zs = [] # list to store all the z vectors, layer by layer
->>>>>>> 74a29f9a6be247026a2e019029efb28bea42b53e
+
         for b, w in zip(self.biases, self.weights):
             z = np.dot(w, activation)+b
             zs.append(z)
@@ -118,7 +118,7 @@ class Network(object):
             activations.append(activation)
 
         # backward pass
->>>>>>> 74a29f9a6be247026a2e019029efb28bea42b53e
+
         delta = self.cost_derivative(activations[-1], y) * \
             sigmoid_prime(zs[-1])
         nabla_b[-1] = delta
@@ -130,7 +130,7 @@ class Network(object):
         # second-last layer, and so on.  It's a renumbering of the
         # scheme in the book, used here to take advantage of the fact
         # that Python can use negative indices in lists.
->>>>>>> 74a29f9a6be247026a2e019029efb28bea42b53e
+
         for l in range(2, self.num_layers):
             z = zs[-l]
             sp = sigmoid_prime(z)
@@ -145,7 +145,7 @@ class Network(object):
         network outputs the correct result. Note that the neural
         network's output is assumed to be the index of whichever
         neuron in the final layer has the highest activation."""
->>>>>>> 74a29f9a6be247026a2e019029efb28bea42b53e
+
         test_results = [(np.argmax(self.feedforward(x)), y)
                         for (x, y) in test_data]
         return sum(int(x == y) for (x, y) in test_results)
@@ -154,7 +154,7 @@ class Network(object):
 
         """Return the vector of partial derivatives \partial C_x /
         \partial a for the output activations."""
->>>>>>> 74a29f9a6be247026a2e019029efb28bea42b53e
+
         return (output_activations-y)
 
 #### Miscellaneous functions
@@ -166,4 +166,3 @@ def sigmoid(z):
 def sigmoid_prime(z):
     """Derivative of the sigmoid function."""
     return sigmoid(z)*(1-sigmoid(z))
->>>>>>> 74a29f9a6be247026a2e019029efb28bea42b53e
