@@ -69,11 +69,21 @@ history = model.fit(x,epochs=100,verbose=1)
 x_testv = tf.linspace(-1,1,100)
 a=model.predict(x_testv)
 
+
+capa_polinomio = model.layers[1]
+
+########Obtener coeficientes del polinomio
+coeficientes = capa_polinomio.kernel.numpy()
+
+print("\nCoeficientes aprendidos del polinomio:")
+for i, c in enumerate(coeficientes):
+    print(f"  x^{i}: {c}")
+
+
 plt.plot(x_testv,a,color='blue')
 plt.plot(x_testv, tf.math.cos(2 * x_testv),color='red' )
 plt.show()
 
-#### Esta parte es para graficar la perdida en los datos de entrenamiento"
 plt.plot(history.history['loss'], label='Training Loss')
 plt.xlabel('Epoch')
 plt.ylabel('Loss')
